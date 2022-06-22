@@ -1,5 +1,6 @@
 import numpy as np
 import heapq
+import random
 
 #pathfinding using a* algorithm
 
@@ -16,6 +17,30 @@ grid = np.array([
     [0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0]])
 
+def checkobstacle(coord,obstacles):
+    for i in range(19):
+        if obstacles[i] == coord:
+            return False
+        elif coord == (0,0) or coord == (9,9):
+            return False
+
+    return True    
+
+
+obstacles = []
+validcoord = False
+
+for i in range(19):
+    coord = (5,5)
+
+    while validcoord:
+        coord = [random.randint(0, 9),random.randint(0, 9)]
+        validcoord = checkobstacle(coord,obstacles)
+
+    obstacles.append(coord)
+
+for k in obstacles:
+    grid[obstacles[i]] = 1
 
 
 start = (0,0)
